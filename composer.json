@@ -1,0 +1,12 @@
+{
+    "name": "eba/commander",
+    "description": "Console helpler for php-framework",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "eba",
+            "email": "ebaaleamyhu3@gmail.com"
+        }
+    ],
+    "require": {}
+}
