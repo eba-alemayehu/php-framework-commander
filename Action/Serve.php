@@ -3,7 +3,7 @@
 namespace Commander\Action; 
 
 class Serve extends Action{
-    public $action = "make:migration"; 
+    public $action = "make:serve"; 
 
     public function help(){
         return "Starts a php server for aplication"; 

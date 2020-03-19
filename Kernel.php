@@ -47,8 +47,4 @@ class Kernel{
     }
 }
 
-
-$kernel = new Kernel($argv);  
-$kernel->exec(); 
-print_r($kernel->terminate()); 
 ?>
