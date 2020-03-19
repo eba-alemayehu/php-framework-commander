@@ -9,6 +9,5 @@
         }
     ],
     "require": {
-        "dmu/commander": "^1.0"
     }
 }
