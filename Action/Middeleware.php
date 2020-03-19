@@ -16,17 +16,15 @@ class Middeleware extends Action
     public function help(){
         return "Create middleware"; 
     }
-    public function run($args)
+    public function run($params)
     {
-        $controller_templet = fread(fopen(APPLICATION_ROOT."/vendor/Application/Commander/Action/Templets/middeleware.php", "r"),
-            filesize(APPLICATION_ROOT."/vendor/Application/Commander/Action/Templets/middeleware.php"));
-        if(isset($args[3])){
-            $controller_templet = str_replace("{name}", $args[3], $controller_templet);
+        if(isset($params[0])){
+            $this->templet(
+                __DIR__."/Templets/middeleware.php", 
+                APPLICATION_ROOT."/app/Http/Middlewares/".$params[0].".php", 
+                ["name" => $params[0]]); 
         }else{
-            die("module name and controller name is not supplied");
+            throw new \Exception("Controller name is not supplied"); 
         }
-
-        $new_controller = fopen(APPLICATION_ROOT."/app/Http/Middlewares/".$args[3].".php", "w+");
-        fwrite($new_controller, $controller_templet);
     }
 }
