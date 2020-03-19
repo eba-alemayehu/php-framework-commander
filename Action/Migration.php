@@ -20,7 +20,7 @@ class Migration extends Action{
             $this->templet(
                 __DIR__."/Templets/model.php", 
                 APPLICATION_ROOT."/app/Models/".$params[0].".php", 
-                ["name" => $params[0]]); 
+                ["model" => $params[0]]); 
 
         }else{
             throw new \Exception("module name and controller name is not supplied"); 
