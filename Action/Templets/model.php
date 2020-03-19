@@ -7,7 +7,7 @@
  */
 
 namespace App;
-use Application\Framework\Database\Model;
+use Application\Database\Model;
 
 class {model} extends Model
 {

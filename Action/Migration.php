@@ -15,11 +15,11 @@ class Migration extends Action{
            
             $this->templet(
                 __DIR__."/Templets/migration.php", 
-                APPLICATION_ROOT."/app/Http/Controllers/".$params[0]."Migration.php", 
-                ["name" => $params[0]]); 
+                APPLICATION_ROOT."/app/Database/Migrations/".$params[0]."Migration.php", 
+                ["table" => $params[0]]); 
             $this->templet(
                 __DIR__."/Templets/model.php", 
-                APPLICATION_ROOT."/app/Http/Controllers/".$params[0].".php", 
+                APPLICATION_ROOT."/app/Models/".$params[0].".php", 
                 ["name" => $params[0]]); 
 
         }else{
