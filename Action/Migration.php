@@ -2,8 +2,14 @@
 
 namespace Commander\Action; 
 
-class Migration{
-    public function __construct($args)
+class Migration extends Action{
+    public $action = "make:migration"; 
+
+    public function help(){
+        return "Create new migration"; 
+    }
+    
+    public function run($args)
     {
         $migration_templet = fread(fopen(APPLICATION_ROOT."vendor/Application/Commander/Action/Templets/migration.php", "r"),
         filesize(APPLICATION_ROOT."vendor/Application/Commander/Action/Templets/migration.php"));

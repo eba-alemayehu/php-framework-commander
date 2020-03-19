@@ -1,6 +1,6 @@
 <?php
 namespace Commander; 
-
+require 'Action/Controller.php'; 
 define("APPLICATION_ROOT", __DIR__."/../../../");
 
 class Kernel{
@@ -8,80 +8,47 @@ class Kernel{
     private $arguments; 
     private $message; 
 
+
+    private $actions = [
+        \Commander\Action\Controller::class,
+        \Commander\Action\Middeleware::class,
+        \Commander\Action\Migration::class,
+        \Commander\Action\Serve::class,
+        \Commander\Action\Migrate::class,
+    ]; 
     public function __construct($_args){
         $this->arguments = $_args; 
-
-        if(!isset($_args[1])){
-            $this->message ="No action is spacified\n"; 
-            return; 
-        }
-        switch($_args[1]) {
-            case 'make':
-                $this->make();
-                break;
-            case 'migrate':
-                if(isset($_args[2])){
-                    $namespace = "\\App\\Database\\Migrations\\";
-                    $class = $_args[2];
-                    $obj = $namespace."".$class;
-
-                    $mig = new $obj();
-                    $mig->up();
-                    $mig->create();
-                }
-                $migrations = scandir(APPLICATION_ROOT . "/app/Database/Migrations/");
-                foreach ($migrations as $migration) {
-
-                    if ($migration != "." && $migration != "..") {
-
-                        $namespace = "\\App\\Database\\Migrations\\";
-                        $class = explode(".", $migration)[0];
-                        $obj = $namespace."".$class;
-
-                        $mig = new $obj();
-                        $mig->up();
-                        $mig->create();
-                    }
-                }
-                break;
-
-            case 'serve': 
-                echo "php is serving at http://localhost:8080 \n"; 
-                shell_exec('cd public && php -S localhost:8080'); 
-                
-                break; 
-        }
     }
 
-    private function make(){
-        if(!isset($this->arguments[2])){
-            $this->message ="Name wes not provided";
-            return; 
-        }
-        switch($this->arguments[2]){
-            case 'module':  
-                $module = new Action\Module($this->arguments); 
-            break; 
-            case 'controller': 
-                $controller = new Action\Controller($this->arguments); 
-            break;
-            case 'middeleware':
-                $controller = new Action\Middeleware($this->arguments);
-                break;
-            case 'migration':
-                echo "migrate";
-                $migraion = new Action\Migration($this->arguments);
-                break;
-        }
-       
-    }
+    public function exec(){
+        if(isset($this->arguments[1])){
+            $action_found = false; 
+            foreach($this->actions as $action){
+                $action = new $action; 
 
-    private function migrate(){
+                if($action->action == $this->arguments[1]){
+                    array_splice($this->arguments, 0, 1); 
+                    $action->run($this->arguments); 
+                    $action_found = true; 
+                    break; 
+                }
+            }
 
+            if(!$action_found){
+                throw new \Exception('Action not found'); 
+            }
+        }else{
+            throw new \Exception('No action is specified!'); 
+        }
     }
 
     public function terminate(){
         return $this->message; 
     }
 }
+
+
+$kernel = new Kernel($argv);  
+$kernel->exec(); 
+print_r($kernel->terminate()); 
 ?>

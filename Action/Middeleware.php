@@ -9,9 +9,14 @@
 namespace Commander\Action;
 
 
-class Middeleware
+class Middeleware extends Action
 {
-    public function __construct($args)
+    public $action = "make:middelware"; 
+
+    public function help(){
+        return "Create middleware"; 
+    }
+    public function run($args)
     {
         $controller_templet = fread(fopen(APPLICATION_ROOT."/vendor/Application/Commander/Action/Templets/middeleware.php", "r"),
             filesize(APPLICATION_ROOT."/vendor/Application/Commander/Action/Templets/middeleware.php"));
