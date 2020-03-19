@@ -27,7 +27,7 @@ class Kernel{
                 $action = new $action; 
 
                 if($action->action == $this->arguments[1]){
-                    array_splice($this->arguments, 0, 1); 
+                    array_splice($this->arguments, 0, 2); 
                     $action->run($this->arguments); 
                     $action_found = true; 
                     break; 

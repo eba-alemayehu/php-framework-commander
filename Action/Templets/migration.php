@@ -9,7 +9,7 @@
 namespace App\Database\Migrations;
 
 
-class {table} extends \Application\Framework\Database\Table
+class {table}Migration extends \Application\Framework\Database\Table
 {
     public function up(){
         parent::increment("id");
