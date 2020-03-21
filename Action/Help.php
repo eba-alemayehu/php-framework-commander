@@ -14,7 +14,7 @@ class Help extends Action{
     
     public function run($args)
     {
-       echo Color::green('All commandes in applciation'); 
+       echo Color::green('All commandes in applciation \n'); 
 
        $actions = (new Kernel([]))->actions; 
 
