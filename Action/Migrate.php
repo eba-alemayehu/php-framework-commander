@@ -5,7 +5,7 @@ namespace Commander\Action;
 use Commander\Util\Color;
 
 class Migrate extends Action{
-    public $action = "make:migration"; 
+    public $action = "migrate"; 
 
     public function help(){
         return "Create new migration"; 

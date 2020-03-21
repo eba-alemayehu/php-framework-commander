@@ -9,7 +9,7 @@ class Kernel{
     private $message; 
 
 
-    private $actions = [
+    public $actions = [
         \Commander\Action\Controller::class,
         \Commander\Action\Middeleware::class,
         \Commander\Action\Migration::class,
