@@ -21,7 +21,7 @@ class Controller extends Action {
             $this->templet(__DIR__."/Templets/controller.php", $file, ["name" => $params[0]]); 
 
             echo Color::green("New $params[0] controller is created \r\n"); 
-            echo Color::yellow('Controller: ').Color::green($file. "\r\n"); 
+            echo Color::yellow('Controller: ').Color::green("app/Http/Controllers/".$params[0]."Controller.php". "\r\n"); 
             
         }else{
             Color::red("Controller name is not provided."); 

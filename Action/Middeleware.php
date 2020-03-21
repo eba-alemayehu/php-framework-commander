@@ -24,7 +24,7 @@ class Middeleware extends Action
             $this->templet(__DIR__."/Templets/middeleware.php", $file, ["name" => $params[0]]); 
 
             echo Color::green("New $params[0] Middeleware is created \r\n"); 
-            echo Color::yellow('Middelware: ').Color::green($file. "\r\n"); 
+            echo Color::yellow('Middelware: ').Color::green("app/Http/Middlewares/".$params[0].".php". "\r\n"); 
         }else{
             Color::red("Controller name is not supplied"); 
         }

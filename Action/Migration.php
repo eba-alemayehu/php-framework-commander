@@ -18,15 +18,15 @@ class Migration extends Action{
             $this->templet(__DIR__."/Templets/migration.php", $migratoinFile, ["table" => $params[0]]);
 
             echo Color::green("New $params[0] controller is created \r\n"); 
-            echo Color::yellow('Controller: ').Color::green($migratoinFile. "\r\n"); 
+            echo Color::yellow('Controller: ').Color::green("app/Database/Migrations/".$params[0]."Migration.php". "\r\n"); 
 
             if(!isset($params[1]) && $params[1] != '--no-model'){
                 echo "\r\n"; 
                 $modelFile = APPLICATION_ROOT."/app/Models/".$params[0].".php";
-                $this->templet(__DIR__."/Templets/model.php", $modelFile, ["model" => $params[0]]); 
+                $this->templet(__DIR__."/Templets/model.php", "app/Database/Migrations/".$params[0]."Migration.php", ["model" => $params[0]]); 
 
                 echo Color::green("New $params[0] controller is created \r\n"); 
-                echo Color::yellow('Controller: ').Color::green($modelFile. "\r\n"); 
+                echo Color::yellow('Controller: ').Color::green("app/Database/Migrations/".$params[0]."Migration.php". "\r\n"); 
             }
            
         }else{
