@@ -20,6 +20,9 @@ class Kernel{
     ]; 
     public function __construct($_args){
         $this->arguments = $_args; 
+        $dotenv = \Dotenv\Dotenv::createImmutable(APPLICATION_ROOT);
+        $dotenv->load();
+
     }
 
     public function exec(){
