@@ -18,10 +18,10 @@ class RouteList extends Action{
         $routes = $router->loadRouter(); 
 
         $table = new Console_Table(); 
-        $table->setHeaders(['URL', 'Controller', 'Middelware']);
+        $table->setHeaders(['Method', 'URL', 'Controller', 'Middelware']);
 
         foreach($routes as $route){
-            $table->addRow([$route->url, $route->controller, implode(', ', $route->middlewares)]);
+            $table->addRow([$route->method, $route->url, $route->controller, implode(', ', $route->middlewares)]);
         }
         echo $table->getTable();
     }
