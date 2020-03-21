@@ -15,7 +15,8 @@ class Kernel{
         \Commander\Action\Migration::class,
         \Commander\Action\Serve::class,
         \Commander\Action\Migrate::class,
-        \Commander\Action\RouteList::class
+        \Commander\Action\RouteList::class, 
+        \Commander\Action\Help::class
     ]; 
     public function __construct($_args){
         $this->arguments = $_args; 
