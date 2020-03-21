@@ -3,6 +3,7 @@
 namespace Commander\Action;
 
 use Commander\Util\Color;
+use Exception;
 
 class Migrate extends Action{
     public $action = "migrate"; 
@@ -12,13 +13,19 @@ class Migrate extends Action{
     }
     
     private function migrate($class){
-        $namespace = "\\App\\Database\\Migrations\\";
-        $obj = $namespace."".$class;
+        try{
+            $namespace = "\\App\\Database\\Migrations\\";
+            $obj = $namespace."".$class;
 
-        $mig = new $obj();
-        $mig->up();
-        $table = $mig->create();
-        echo Color::green("\t $table table is created."); 
+            $mig = new $obj();
+            $mig->up();
+            $table = $mig->create();
+            echo Color::green("\t $table table is created.");
+        }catch(Exception $e){
+            echo Color::red("Migration faild! \r\n"); 
+            echo Color::red($e->getMessage()); 
+        }
+         
     }
     public function run($args)
     {
