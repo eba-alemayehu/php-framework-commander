@@ -19,7 +19,7 @@ class RouteList extends Action{
         $routes = $router->loadRouter(); 
 
         $table = new Console_Table(CONSOLE_TABLE_ALIGN_LEFT, CONSOLE_TABLE_BORDER_ASCII, 1, null, true); 
-        $table->setHeaders([Color::str('Method',Color::GREEN), 'URL', 'Controller', 'Middelware']);
+        $table->setHeaders(['Method', 'URL', 'Controller', 'Middelware']);
 
         foreach($routes as $route){
             $table->addRow([$route->method, $route->url, $route->controller, implode(', ', $route->middlewares)]);

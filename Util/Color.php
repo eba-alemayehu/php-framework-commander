@@ -76,4 +76,8 @@ class Color {
         return $colored_string;
     }
 
+    public static function __callStatic($name, $arguments)
+    {
+        return self::str($arguments[0], $name); 
+    }
 }
