@@ -14,13 +14,13 @@ class Help extends Action{
     
     public function run($args)
     {
-       echo Color::green('All commandes in applciation \n'); 
+       echo Color::green("All commandes in applciation \r\n \r\n"); 
 
        $actions = (new Kernel([]))->actions; 
 
        foreach($actions as $action){
            $action = new $action; 
-           echo str_pad( $action->action, 30 ) . $action->help . "\n";
+           echo str_pad(Color::green($action->action), 30 ) . $action->help() . "\n";
        }
     }
 }
