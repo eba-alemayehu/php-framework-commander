@@ -9,5 +9,6 @@
         }
     ],
     "require": {
+        "pear/console_table": "^1.3"
     }
 }

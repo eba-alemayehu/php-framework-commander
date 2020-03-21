@@ -3,6 +3,7 @@
 namespace Commander\Action;
 
 use Application\Http\Router;
+use Console_Table;
 
 class RouteList extends Action{
     public $action = "route:list"; 
@@ -16,10 +17,12 @@ class RouteList extends Action{
         $router = new Router(false); 
         $routes = $router->loadRouter(); 
 
+        $table = new Console_Table(); 
+        $table->setHeaders(['URL', 'Controller', 'Middelware']);
+
         foreach($routes as $route){
-            echo $route->url.'/n'; 
-            // echo $route->controller; 
-            // echo implode(',', $route->middlewares);
+            $table->addRow([$route->url, $route->controller, implode(', ', $route->middlewares)]);
         }
+        echo $table->getTable();
     }
 }
