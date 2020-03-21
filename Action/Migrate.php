@@ -20,7 +20,7 @@ class Migrate extends Action{
             $mig = new $obj();
             $mig->up();
             $table = $mig->create();
-            echo Color::green("\t $table table is created. \r\n");
+            echo Color::orange("\t $table").Color::green(" table is created. \r\n");
         }catch(Exception $e){
             echo Color::red("Migration faild! \r\n"); 
             echo Color::red($e->getMessage()); 
