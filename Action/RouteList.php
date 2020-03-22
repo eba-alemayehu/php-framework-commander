@@ -18,7 +18,7 @@ class RouteList extends Action{
         $router = new Router(false); 
         $routes = $router->loadRouter(); 
 
-        $table = new Console_Table(CONSOLE_TABLE_ALIGN_LEFT, CONSOLE_TABLE_BORDER_ASCII, 1, null, true); 
+        $table = new Console_Table(); 
         $table->setHeaders(['Method', 'URL', 'Controller', 'Middelware']);
 
         foreach($routes as $route){
