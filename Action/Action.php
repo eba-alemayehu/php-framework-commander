@@ -3,7 +3,6 @@
 namespace Commander\Action; 
 
 abstract class Action {
-    abstract public function run(array $params); 
     abstract public function help(); 
     public function templet($templet, $new_file, $params){
         $controller_templet = fread(fopen($templet, "r"), filesize($templet));
